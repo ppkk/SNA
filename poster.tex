@@ -23,7 +23,7 @@
 
 \begin{poster}{
 	grid=false,
-	columns=3,
+	columns=6,
 	background=plain,
 	bgColorOne=bgcolorone,
 	%bgColorTwo=bgcolortwo,
@@ -44,11 +44,11 @@
 {\Large{\textcolor{headerfontcolor}{P. Kus$^{1}$, P. Karban$^{2}$ and F. Mach$^{1, 2}$\\{\large $^{1}$ \textit{Institute of Thermomechanics, Academy of Sciences CR, v. v. i.}}\\{\large $^{2}$ \textit{Faculty of Electrical Engineering, University of West Bohemia}}}}}
 {\includegraphics[width=7em]{it.png}}
 
-\headerbox{About Agros2D}{name=about,column=0,row=0}{
+\headerbox{About Agros2D}{name=about,column=0,row=0, span=2}{
 Agros2D is a multiplatform C++ application for the solution of partial differential equations (PDE) based on the Hermes library, developed by the hpfem.org group at the University of West Bohemia in Pilsen. Hermes library is developed at University od Reno in Nevada. Agros2D is distributed under the GNU General Public License.
 }
 
-\headerbox{Supported physical fields}{name=fields,column=0,row=0,below=about}{
+\headerbox{Supported physical fields}{name=fields,column=0,row=0, span=2,below=about}{
 \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
 \item Electrostatic fields
 \item Electric current fields
@@ -61,7 +61,7 @@ Agros2D is a multiplatform C++ application for the solution of partial different
 \end{itemize}
 }
 
-\headerbox{Key Features}{name=features,column=0,row=0,below=fields}{
+\headerbox{Key Features}{name=features,column=0,row=0,span=2,below=fields}{
 \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
 \item Steady state, transient and harmonic analysis
 \item Curvilinear elements
@@ -71,7 +71,7 @@ Agros2D is a multiplatform C++ application for the solution of partial different
 \end{itemize}
 }
 
-\headerbox{Simple GUI control}{name=gui,column=0,row=0,below=features}{
+\headerbox{Simple GUI control}{name=gui,column=0,row=0,span=2,below=features}{
 \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
 \item Interactive geometry definition
 \item AutoCAD DXF (Drawing Exchange Format) import and export
@@ -85,7 +85,28 @@ Agros2D is a multiplatform C++ application for the solution of partial different
 \end{itemize}
 }
 
-\headerbox{Optimization}{name=optimization,column=1,row=0,span=2}{
+\headerbox{Curvilinear elements}{name=curvilinear_elements,column=0,row=0,span=2,below=gui}{
+\begin{center}
+	\begin{minipage}{20em}
+		\centering
+		\includegraphics[width=20em]{curvilinear_elements/convergence.pdf}
+	\end{minipage}
+\end{center}
+}
+
+\headerbox{Adaptivity}{name=adaptivity,column=0,row=0,span=2,below=curvilinear_elements}{
+\begin{center}
+	\begin{minipage}{20em}
+		\centering
+		\includegraphics[width=20em]{adaptivity/convergence.pdf}
+	\end{minipage}
+\end{center}
+}
+
+\headerbox{Arbitrary level hanging nodes}{name=adaptivity,column=0,row=0,span=2,below=adaptivity}{
+}
+
+\headerbox{Optimization}{name=optimization,column=2,row=0,span=4}{
 \begin{center}
 	\begin{minipage}{5em}
 		\centering
@@ -142,9 +163,9 @@ Agros2D is a multiplatform C++ application for the solution of partial different
 \end{center}
 }
 
-\headerbox{Particle tracing}{name=particle_tracing,column=1,row=0,span=2,below=optimization}{
+\headerbox{Particle tracing}{name=particle_tracing,column=2,row=0,span=4,below=optimization}{
 }
-\headerbox{References}{name=references,column=1,row=0,span=2,below=particle_tracing}{
+\headerbox{References}{name=references,column=2,row=0,span=4,below=particle_tracing}{
 }
 \end{poster}
 \end{document}
