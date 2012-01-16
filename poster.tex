@@ -54,10 +54,10 @@ Agros2D is a multiplatform C++ application for the solution of partial different
 \item Electric current fields
 \item Magnetic fields (steady state, harmonic and transient analysis)
 \item High frequency electromagnetic fields - in development
-\item Temperature fields (steady state and transient analysis)
+\item Temperature fields (steady state and transient)
 \item Acoustic field (harmonic and transient analysis)
 \item Linear thermo-elasticity
-\item Incompressible flow (steady state and transient analysis) - in development
+\item Incompressible flow  - in development
 \end{itemize}
 }
 
@@ -85,27 +85,52 @@ Agros2D is a multiplatform C++ application for the solution of partial different
 \end{itemize}
 }
 
-\headerbox{Curvilinear elements}{name=curvilinear_elements,column=0,row=0,span=2,below=gui}{
+\headerbox{Adaptivity}{name=adaptivity ,column=0,row=0,span=2,below=gui}{
 \begin{center}
-	\begin{minipage}{20em}
-		\centering
-		\includegraphics[width=20em]{curvilinear_elements/convergence.pdf}
-	\end{minipage}
-\end{center}
-\vspace{4cm}
-}
-
-\headerbox{Adaptivity}{name=adaptivity,column=0,row=0,span=3,below=curvilinear_elements}{
-\begin{center}
-	\begin{minipage}{20em}
-		\centering
-		\includegraphics[width=20em]{adaptivity/convergence.pdf}
+	\begin{minipage}{22em}
+		One of the main strengths of the Hermes library, which is also available in Agros2D, is an automatic
+$hp$-adaptivity algorithm. It combines advantages of $h$-adaptivity (precise resolution of singularities, 
+boundary layers, etc.) with advantages of $p$-adaptivity, which is very successfull for smooth solutions. 
+Its superiority can bee seen from the following graph, where different adaptivity strategies are compared 
+for test problem.
+\end{minipage}
+\begin{minipage}{22em}
+\hspace{-0.7cm}
+	\includegraphics[width=24em]{adaptivity/convergence.pdf}
 	\end{minipage}
 \end{center}
 }
 
-\headerbox{Arbitrary level hanging nodes}{name=arbitrary,column=3,row=0,span=3,below=curvilinear_elements}{
-}
+\headerbox{Curvilinear elements}{name=curvilinear_elements,column=0,row=0,span=3,below=adaptivity}{
+\begin{center}
+	\begin{minipage}{19em}
+		\centering
+		\includegraphics[angle=90, width=19em]{curvilinear_elements/mesh.png}
+	\end{minipage}
+\begin{minipage}{19em}
+The use of curvilinear elements can be very effective for some geometries. In the classical approach, 
+rounded lines have to be approximated by a sequence of small streight segments. 
+In the figure left we can see part of insulator and its mesh.
+It would result in loss of 
+accuracy and also in creation of large amount of elements in the initial mesh. The use of curvilinear 
+elements hence leads to faster and more accurate calculations.
+\end{minipage}
+
+\end{center}}
+
+\headerbox{Arbitrary level hanging nodes}{name=arbitrary,column=3,row=0,span=3,below=adaptivity}{
+\begin{center}
+	\begin{minipage}{20em}
+		\centering
+		\includegraphics[angle=90, width=19em]{curvilinear_elements/mesh.png}
+	\end{minipage}
+\begin{minipage}{17em}
+Use of meshes with arbitrary-level hanging nodes with higher-order approximation is a unique feature of 
+the Hermes library. In connection with automatic adaptivity, it allowes to resolve difficoult problems 
+precisely. An example of such mesh can be seen in the figure left.
+\end{minipage}
+
+\end{center}}
 
 \headerbox{Optimization}{name=optimization,column=2,row=0,span=4}{
 \begin{center}
@@ -138,15 +163,15 @@ interpreter is included.
 \end{center}
 
 \begin{center}
-	\begin{minipage}{12em}
+	\begin{minipage}{13em}
 		\centering
-		\includegraphics[height=16em]{optimization/magnetic_field.png}
+		\includegraphics[height=17em]{optimization/magnetic_field.png}
 	\end{minipage}
-	\begin{minipage}{12em}
+	\begin{minipage}{13em}
 		\centering
-		\includegraphics[height=16em]{optimization/temperature_field.png}
+		\includegraphics[height=17em]{optimization/temperature_field.png}
 	\end{minipage}
-	\begin{minipage}{26em}
+	\begin{minipage}{24em}
 		In the figure above, we can see several configurations of an owen used for induction heating.
 The schema (and also the calculations) are axisymetric.
 Several parameters can be changed -- the shape of the owen (height and diameter) can changed, but its volume remains constant.
@@ -174,31 +199,41 @@ been used). ...
 \headerbox{Particle tracing}{name=particle_tracing,column=2,row=0,span=4,below=optimization}{
 \begin{center}
   \begin{minipage}{17em}
-fds dfsfs fdsads ffds fdsfsd fdsfsd fdsfsdf fdsfds fdsfs 
+Particle tracing is a feature, that has been addede to Agros2D just recently. It calculates how charged particle 
+behave in calculated field. We demonstrate this feature on an example of device, which is used for separation of
+different components of recycled material. A schema of such separator is shown in the figure right.
   \end{minipage}
 	\begin{minipage}{17em}
-	 		\includegraphics[width=16em]{particle_tracing/princip_pruchod.pdf}
+			\centering
+	 		\includegraphics[width=15em]{particle_tracing/princip_pruchod.pdf}
 	\end{minipage}
   \begin{minipage}{17em}
-fds dfsfs fdsads ffds fdsfsd fdsfsd fdsfsdf fdsfds fdsfs 
+Electric field potential is calculated first. $hp$-adaptivity has been used, since it is very efficient for 
+electorstatic problems. In the figure below we can see fine mesh, that has been created by automatic adaptivity
+algorithm. It can be seen, that the mesh is very fine close to the singularities of the field and that various
+polynomial degrees are used, as it is optimal to minimize the solution error.
   \end{minipage}
 \end{center}
 %
 \begin{center}
-	\begin{minipage}{18em}
-	 		\includegraphics[width=17em]{particle_tracing/separator.png}
+	\begin{minipage}{19em}
+			\centering
+	 		\includegraphics[width=18em]{particle_tracing/separator.png}
 	\end{minipage} 
-  \begin{minipage}{15em}
-fds dfsfs fdsads ffds fdsfsd fdsfsd fdsfsdf fdsfds fdsfs 
+  \begin{minipage}{13.5em}
+In the figure left we can see electric potential and traces of several particles, as they are directed to 
+right container of the separator. Electric field acts differently for each type of particles, which is the 
+principle of separation.
   \end{minipage}
-	\begin{minipage}{18em}
-	 		\includegraphics[width=17em]{particle_tracing/separator_sit.png}
+	\begin{minipage}{19em}
+			\centering
+	 		\includegraphics[width=18em]{particle_tracing/separator_sit.png}
 	\end{minipage} 
 \end{center}
 
 
 }
-\headerbox{References}{name=references,column=0,row=0,span=6,below=particle_tracing, below=adaptivity}{
+\headerbox{References}{name=references,column=0,row=0,span=6,below=particle_tracing, below=curvilinear_elements}{
 }
 \end{poster}
 \end{document}
