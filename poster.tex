@@ -71,7 +71,7 @@ Agros2D is a multiplatform C++ application for the solution of partial different
 \begin{itemize} \itemsep1pt \parskip0pt \parsep0pt
 	\item Curvilinear elements
 	\item Arbitrary level hanging nodes
-	\item Multimesh assembling
+	\item Multi-mesh assembling
 	\item Automatic hp-adaptivity
 \end{itemize}
 }
@@ -85,7 +85,7 @@ Agros2D is a multiplatform C++ application for the solution of partial different
 	\item Calculation of surface and volume integrals
 	\item Export of charts, data, images, movies
 	\item Scripting support (based on Python language)
-	\item Remote control
+	\item Remote control 
 \end{itemize}
 }
 
@@ -93,14 +93,14 @@ Agros2D is a multiplatform C++ application for the solution of partial different
 \headerbox{Adaptivity}{name=adaptivity ,column=0,row=0,span=2,below=gui}{
 \begin{center}
 	\begin{minipage}{22em}
-		One of the main strengths of the Hermes library, which is also available in Agros2D, is an automatic $hp$-adaptivity algorithm. It combines advantages of $h$-adaptivity (precise resolution of singularities, boundary layers, etc.) with advantages of $p$-adaptivity, which is very successfull for smooth solutions. Its superiority can bee seen from the following graph, where different adaptivity strategies are compared for a test problem.
+		One of the main strengths of the Hermes library, which is also available in Agros2D, is an automatic $hp$-adaptivity algorithm. It combines advantages of $h$-adaptivity (precise resolution of singularities, boundary layers, etc.) with advantages of $p$-adaptivity, which is very successful for smooth solutions. Its superiority can bee seen from the following graph, where different adaptivity strategies are compared for a test problem.
 	\end{minipage}
 	\begin{minipage}{22em}
 		\centering
 		\includegraphics[width=23em]{adaptivity/convergence.pdf}
 	\end{minipage}
 	\begin{minipage}{22em}
-		Even though $hp$-adaptivity is very successfull strategy, it may not be sutiable for all situations. Agros2D therefore allowes the user to chose between $h$, $p$ or $hp$ adaptivity or to decide not to use adaptivity at all. In that case, an a priori knowledge of the solution properties may be used to prepare the mesh by various operations, such as refinements towads vertices, edges, etc. The size of elements and its order may also be selected by the user.
+		Even though $hp$-adaptivity is very successful strategy, it may not be suitable for all situations. Agros2D therefore allows the user to chose between $h$, $p$ or $hp$ adaptivity or to decide not to use adaptivity at all. In that case, an a priori knowledge of the solution properties may be used to prepare the mesh by various operations, such as refinements towards vertices, edges, etc. The size of elements and its order may also be selected by the user.
 	\end{minipage}
 \end{center}
 }
@@ -113,7 +113,7 @@ Agros2D is a multiplatform C++ application for the solution of partial different
 		\includegraphics[width=15em]{curvilinear_elements/mesh.png}
 	\end{minipage}
 	\begin{minipage}{21em}
-		The use of curvilinear elements can be very effective for some geometries. In the classical finite element approach, rounded lines have to be approximated by a sequence of small streight segments. In the figure left we can see example of such mesh. Approximation of the circular parts would result in loss of accuracy and also in creation of large amount of elements in the initial mesh. The use of curvilinear elements prevents this and hence leads to faster and more accurate calculations.
+		The use of curvilinear elements can be very effective for some geometries. In the classical finite element approach, rounded lines have to be approximated by a sequence of small straight segments. In the figure left we can see example of such mesh. Approximation of the circular parts would result in loss of accuracy and also in creation of large amount of elements in the initial mesh. The use of curvilinear elements prevents this and hence leads to faster and more accurate calculations.
 	\end{minipage}
 \end{center}
 }
@@ -127,7 +127,7 @@ Agros2D is a multiplatform C++ application for the solution of partial different
 	\end{minipage}
 	\begin{minipage}{16em}
 		The use of meshes with arbitrary-level hanging nodes with higher-order approximation is a unique feature of the Hermes library. 
-%In connection with automatic adaptivity, it allowes to resolve difficoult problems accurately. 
+%In connection with automatic adaptivity, it allows to resolve difficult problems accurately. 
 During the adaptivity algorithm, no refinements have to be done just in order to keep the mesh regular enough. Such refinements would slow down the convergence by adding extra degrees of freedom with no significant decrease of the solution error. 
 	\end{minipage}
 \vspace{0.9mm}
@@ -138,7 +138,7 @@ During the adaptivity algorithm, no refinements have to be done just in order to
 \headerbox{Optimization}{name=optimization,column=2,row=0,span=4}{
 \begin{center}
         \begin{minipage}{16.5em}
-		    In the engineering practise, the usual demand is not only to calculate some field, but also to be able to design some of the construction parameters in order to optimize some properties. In Agros2D, optimization is possible thanks to scripting - a python interpreter is included.
+		    In the engineering practice, the usual demand is not only to calculate some field, but also to be able to design some of the construction parameters in order to optimize some properties. In Agros2D, optimization is possible thanks to scripting - a python interpreter is included.
 	\end{minipage}
 	\begin{minipage}{4em}
 		\centering
@@ -168,14 +168,14 @@ During the adaptivity algorithm, no refinements have to be done just in order to
 		\includegraphics[height=18em]{optimization/temperature_field.png}
 	\end{minipage}
 	\begin{minipage}{18em}
-		In the figure above, we can see several configurations of an owen used for induction heating. The schema (and also the calculations) are axisymetric.
-Several parameters can be changed -- the shape of the owen (height and diameter) can vary, but its volume remains constant. Also the position and size of inductors (two bars on the right hand side of the figure) can be changed. In the figure left we can  see magnetic field generated by the inductor and temperature field generated by Joule losses in the material. It is an example of weak coupling, where values of one field are used to calculate another field.
+		In the figure above, we can see several configurations of an oven used for induction heating. The schema (and also the calculations) are axisymetric.
+Several parameters can be changed -- the shape of the oven (height and diameter) can vary, but its volume remains constant. Also the position and size of inductors (two bars on the right hand side of the figure) can be changed. In the figure left we can  see magnetic field generated by the inductor and temperature field generated by Joule losses in the material. It is an example of weak coupling, where values of one field are used to calculate another field.
 	\end{minipage}
 \end{center}
 
 \begin{center}
 	\begin{minipage}{22em}
-		In this problem, there are two different indicators of the quality of the design. The total heat generated in the  owen should be as big as possible and should be equaly distributed. In the figure, each point represents one calculation and its resulting heat $Q$ (should be maximalized) and unevennes of distribution of heat $U$ (shoul be minimalized). Blue points represent calculations with randomly chosen parameters. Red points are products of optimization. Using different weights for $Q$ and $U$, optimal points form so-called Pareto front. There are more sophisticated algorithms to find the Pareto front, which will be implemented in the future.
+		In this problem, there are two different indicators of the quality of the design. The total heat generated in the  oven should be as big as possible and should be equally distributed. In the figure, each point represents one calculation and its resulting heat $Q$ (should be maximized) and unevenness of distribution of heat $U$ (should be minimized). Blue points represent calculations with randomly chosen parameters. Red points are products of optimization. Using different weights for $Q$ and $U$, optimal points form so-called Pareto front. There are more sophisticated algorithms to find the Pareto front, which will be implemented in the future.
 	\end{minipage}
 	\begin{minipage}{28em}
 		\centering
@@ -188,14 +188,14 @@ Several parameters can be changed -- the shape of the owen (height and diameter)
 \headerbox{Particle Tracing}{name=particle_tracing,column=2,row=0,span=4,below=optimization}{
 \begin{center}
 	\begin{minipage}{16.5em}
-		Particle tracing is a feature, that has been addede to Agros2D very recently. Equations of motion for charged particles are calculated to show their behavior in the previously calculated field (electrostatic, magnetic, or other). We demonstrate this feature on an example of device, which is used for separation of different components of recycled material. A schema of such separator is shown in the figure right.
+		Particle tracing is a feature, that has been added to Agros2D very recently. Equations of motion for charged particles are calculated to show their behavior in the previously calculated field (electrostatic, magnetic, or other). We demonstrate this feature on an example of device, which is used for separation of different components of recycled material. A schema of such separator is shown in the figure right.
 	\end{minipage}
 	\begin{minipage}{17em}
 		\centering
-	 	\includegraphics[width=16em]{particle_tracing/principle.pdf}
+	 	\includegraphics[width=15em]{particle_tracing/principle.pdf}
 	\end{minipage}
 	\begin{minipage}{16.5em}
-		Electric field potential is calculated first. $hp$-adaptivity has been used, since it is very efficient for electorstatic problems. In the figure below we can see a fine mesh, that has been created by automatic adaptivity algorithm. It can be seen, that the mesh is very fine close to the singularities of the field and that various polynomial degrees are used in order to minimize the solution error.
+		Electric field potential is calculated first. $hp$-adaptivity has been used, since it is very efficient for electrostatic problems. In the figure below we can see a fine mesh, that has been created by automatic adaptivity algorithm. It can be seen, that the mesh is very fine close to the singularities of the field and that various polynomial degrees are used in order to minimize the solution error.
 	\end{minipage}
 \end{center}
 
@@ -216,7 +216,7 @@ Several parameters can be changed -- the shape of the owen (height and diameter)
 
 }
 \headerbox{References}{name=references,column=0,row=0,span=6,below=particle_tracing, below=curvilinear_elements}{
-\vspace{-4mm}
+\vspace{-3mm}
 \begin{center}
    \textcolor{blue}{\texttt{www.agros2d.org}} -- homepage of the Agros2D project\\
    \textcolor{blue}{\texttt{www.hpfem.org/hermes}} -- homepage of the Hermes project
