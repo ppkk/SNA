@@ -2,6 +2,7 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
+\usepackage{color}	
 
 \definecolor{bgcolorone}{RGB}{225,225,225}
 \definecolor{bgcolortwo}{RGB}{225,225,225}
@@ -92,14 +93,16 @@ Agros2D is a multiplatform C++ application for the solution of partial different
 \headerbox{Adaptivity}{name=adaptivity ,column=0,row=0,span=2,below=gui}{
 \begin{center}
 	\begin{minipage}{22em}
-		One of the main strengths of the Hermes library, which is also available in Agros2D, is an automatic $hp$-adaptivity algorithm. It combines advantages of $h$-adaptivity (precise resolution of singularities, boundary layers, etc.) with advantages of $p$-adaptivity, which is very successfull for smooth solutions. Its superiority can bee seen from the following graph, where different adaptivity strategies are compared for test problem.
+		One of the main strengths of the Hermes library, which is also available in Agros2D, is an automatic $hp$-adaptivity algorithm. It combines advantages of $h$-adaptivity (precise resolution of singularities, boundary layers, etc.) with advantages of $p$-adaptivity, which is very successfull for smooth solutions. Its superiority can bee seen from the following graph, where different adaptivity strategies are compared for a test problem.
 	\end{minipage}
 	\begin{minipage}{22em}
 		\centering
 		\includegraphics[width=23em]{adaptivity/convergence.pdf}
 	\end{minipage}
+	\begin{minipage}{22em}
+		Even though $hp$-adaptivity is very successfull strategy, it may not be sutiable for all situations. Agros2D therefore allowes the user to chose between $h$, $p$ or $hp$ adaptivity or to decide not to use adaptivity at all. In that case, an a priori knowledge of the solution properties may be used to prepare the mesh by various operations, such as refinements towads vertices, edges, etc. The size of elements and its order may also be selected by the user.
+	\end{minipage}
 \end{center}
-\vspace{10mm}
 }
 
 % Curvilinear Elements
@@ -110,8 +113,7 @@ Agros2D is a multiplatform C++ application for the solution of partial different
 		\includegraphics[width=15em]{curvilinear_elements/mesh.png}
 	\end{minipage}
 	\begin{minipage}{21em}
-		The use of curvilinear elements can be very effective for some geometries. In the classical approach, rounded lines have to be approximated by a sequence of small streight segments. In the figure left we can see part of insulator and its mesh.
-It would result in loss of accuracy and also in creation of large amount of elements in the initial mesh. The use of curvilinear elements hence leads to faster and more accurate calculations.
+		The use of curvilinear elements can be very effective for some geometries. In the classical finite element approach, rounded lines have to be approximated by a sequence of small streight segments. In the figure left we can see example of such mesh. Approximation of the circular parts would result in loss of accuracy and also in creation of large amount of elements in the initial mesh. The use of curvilinear elements prevents this and hence leads to faster and more accurate calculations.
 	\end{minipage}
 \end{center}
 }
@@ -119,15 +121,16 @@ It would result in loss of accuracy and also in creation of large amount of elem
 % Arbitrary Level Hanging Nodes
 \headerbox{Arbitrary Level Hanging Nodes}{name=arbitrary,column=3,row=0,span=3,below=adaptivity}{
 \begin{center}
-	\begin{minipage}{21em}
+	\begin{minipage}{22em}
 		\centering
-		\includegraphics[angle=90, width=19em]{arbitrary/mesh.png}
+		\includegraphics[angle=90, width=20em]{arbitrary/mesh.png}
 	\end{minipage}
-	\begin{minipage}{17em}
-		Use of meshes with arbitrary-level hanging nodes with higher-order approximation is a unique feature of 
-the Hermes library. In connection with automatic adaptivity, it allowes to resolve difficoult problems 
-precisely. An example of such mesh can be seen in the figure left.
+	\begin{minipage}{16em}
+		The use of meshes with arbitrary-level hanging nodes with higher-order approximation is a unique feature of the Hermes library. 
+%In connection with automatic adaptivity, it allowes to resolve difficoult problems accurately. 
+During the adaptivity algorithm, no refinements have to be done just in order to keep the mesh regular enough. Such refinements would slow down the convergence by adding extra degrees of freedom with no significant decrease of the solution error. 
 	\end{minipage}
+\vspace{0.9mm}
 \end{center}
 }
 
@@ -166,17 +169,17 @@ precisely. An example of such mesh can be seen in the figure left.
 	\end{minipage}
 	\begin{minipage}{18em}
 		In the figure above, we can see several configurations of an owen used for induction heating. The schema (and also the calculations) are axisymetric.
-Several parameters can be changed -- the shape of the owen (height and diameter) can changed, but its volume remains constant. Also the position and size of inductors (two bars on the right hand side of the figure) can be changed. In the figure left we can  see magnetic field generated by the inductor and temperature field generated by Joule losses in the material.
+Several parameters can be changed -- the shape of the owen (height and diameter) can vary, but its volume remains constant. Also the position and size of inductors (two bars on the right hand side of the figure) can be changed. In the figure left we can  see magnetic field generated by the inductor and temperature field generated by Joule losses in the material. It is an example of weak coupling, where values of one field are used to calculate another field.
 	\end{minipage}
 \end{center}
 
 \begin{center}
-	\begin{minipage}{25em}
-		In this problem, there are two different indicators of the quality of the design. First, total heat generated in the  owen should be as big as possible, and, second, it should be equaly distributed. In the figure, each point represents one calculation and its resulting heat $Q$ (should be maximalized) and unevennes of distribution of heat $U$ (shoul be minimalized). Blue points represent calculations with randomly chosen parameters. Red points are products of optimization (simple implementation of conjugate gradient method has been used). ...
+	\begin{minipage}{22em}
+		In this problem, there are two different indicators of the quality of the design. The total heat generated in the  owen should be as big as possible and should be equaly distributed. In the figure, each point represents one calculation and its resulting heat $Q$ (should be maximalized) and unevennes of distribution of heat $U$ (shoul be minimalized). Blue points represent calculations with randomly chosen parameters. Red points are products of optimization. Using different weights for $Q$ and $U$, optimal points form so-called Pareto front. There are more sophisticated algorithms to find the Pareto front, which will be implemented in the future.
 	\end{minipage}
-	\begin{minipage}{25em}
+	\begin{minipage}{28em}
 		\centering
-		\includegraphics[width=25em]{optimization/results.pdf}
+		\includegraphics[width=28em]{optimization/results.pdf}
 	\end{minipage}
 \end{center}
 }
@@ -184,16 +187,15 @@ Several parameters can be changed -- the shape of the owen (height and diameter)
 % Particle Tracing
 \headerbox{Particle Tracing}{name=particle_tracing,column=2,row=0,span=4,below=optimization}{
 \begin{center}
-	\begin{minipage}{17.5em}
-		Particle tracing is a feature, that has been addede to Agros2D just recently. It calculates how charged particle behave in calculated field. We demonstrate this feature on an example of device, which is used for separation of different components of recycled material. A schema of such separator is shown in the figure right.
+	\begin{minipage}{16.5em}
+		Particle tracing is a feature, that has been addede to Agros2D very recently. Equations of motion for charged particles are calculated to show their behavior in the previously calculated field (electrostatic, magnetic, or other). We demonstrate this feature on an example of device, which is used for separation of different components of recycled material. A schema of such separator is shown in the figure right.
 	\end{minipage}
-	\begin{minipage}{15em}
+	\begin{minipage}{17em}
 		\centering
-	 	\includegraphics{particle_tracing/principle.pdf}
+	 	\includegraphics[width=16em]{particle_tracing/principle.pdf}
 	\end{minipage}
-	\begin{minipage}{17.5em}
-		Electric field potential is calculated first. $hp$-adaptivity has been used, since it is very efficient for electorstatic problems. In the figure below we can see fine mesh, that has been created by automatic adaptivity algorithm. It can be seen, that the mesh is very fine close to the singularities of the field and that various
-polynomial degrees are used, as it is optimal to minimize the solution error.
+	\begin{minipage}{16.5em}
+		Electric field potential is calculated first. $hp$-adaptivity has been used, since it is very efficient for electorstatic problems. In the figure below we can see a fine mesh, that has been created by automatic adaptivity algorithm. It can be seen, that the mesh is very fine close to the singularities of the field and that various polynomial degrees are used in order to minimize the solution error.
 	\end{minipage}
 \end{center}
 
@@ -203,7 +205,7 @@ polynomial degrees are used, as it is optimal to minimize the solution error.
 	 	\includegraphics[width=19em]{particle_tracing/scalar_potential_and_particles.png}
 	\end{minipage} 
 	\begin{minipage}{11em}
-		In the figure left we can see electric potential and traces of several particles, as they are directed to right container of the separator. Electric field acts differently for each type of particles, which is the principle of separation.
+		In the figure left we can see electric potential and traces of several particles, as they are directed to the right-hand side container of the separator. Electric field acts differently for each type of particles, which is the principle of the separation. Obviously, gravitation force is also considered.
 	\end{minipage}
 	\begin{minipage}{20em}
 		\centering
@@ -213,6 +215,11 @@ polynomial degrees are used, as it is optimal to minimize the solution error.
 
 }
 \headerbox{References}{name=references,column=0,row=0,span=6,below=particle_tracing, below=curvilinear_elements}{
+\vspace{-4mm}
+\begin{center}
+   \textcolor{blue}{\texttt{www.agros2d.org}} -- homepage of the Agros2D project\\
+   \textcolor{blue}{\texttt{www.hpfem.org/hermes}} -- homepage of the Hermes project
+\end{center}
 }
 \end{poster}
 \end{document}
